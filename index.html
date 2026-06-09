@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I am Sorry, Muskan ❤️</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(225, 74, 114, 0.2);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            z-index: 10;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ff758f;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #594d50;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .highlight {
+            color: #ff4d6d;
+            font-weight: bold;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            height: 50px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            background-color: #ff1a43;
+        }
+
+        #noBtn {
+            background-color: #a3999b;
+            color: white;
+            position: absolute;
+            right: 80px;
+        }
+
+        /* Floating Hearts Animation */
+        .heart {
+            position: absolute;
+            color: #ff758f;
+            opacity: 0.7;
+            animation: float Up 4s infinite linear;
+            font-size: 20px;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Replace 'muskan.jpg' with your actual image path -->
+        <img class="profile-img" src="muskan.jpg" alt="Beautiful Muskan">
+        
+        <h1>I'm So Sorry, Muskan 💔</h1>
+        
+        <p>
+            My days feel completely empty when you aren't talking to me. I hate that I caused a smile to fade from your face. You mean the world to me, and I promise to be better. 
+            <br><br>
+            Please forgive me? <span class="highlight">I love you so much!</span>
+        </p>
+
+        <div class="btn-container">
+            <button id="yesBtn" onclick="forgiven()">Yes, I Forgive You ❤️</button>
+            <button id="noBtn" onmouseover="moveButton()">No</button>
+        </div>
+    </div>
+
+    <script>
+        // Interactive "No" button that runs away when hovered
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            const container = document.querySelector('.card');
+            
+            // Calculate random positions within the card limits
+            const maxX = container.clientWidth - noBtn.clientWidth - 20;
+            const maxY = container.clientHeight - noBtn.clientHeight - 20;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY) - 100; // Offset to keep it near button area
+
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        function forgiven() {
+            document.querySelector('.card').innerHTML = `
+                <img class="profile-img" src="muskan.jpg" alt="Beautiful Muskan">
+                <h1 style="color: #ff4d6d;">Thank You, My Beautiful Muskan! 🥰</h1>
+                <p>You just made me the happiest person alive. I promise to keep that beautiful smile on your face forever. I love you to the moon and back! 💖✨</p>
+            `;
+            // Trigger extra celebration hearts
+            for(let i=0; i<30; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+
+        // Background falling hearts logic
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            heart.style.fontSize = Math.random() * 15 + 15 + 'px';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 400);
+    </script>
+</body>
+</html>
